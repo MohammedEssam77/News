@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.example.newsapplication.entities.News" />
+
+        <variable
+            name="itemclick"
+            type="com.example.newsapplication.entities.PostItemClick" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_container_cons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/itemArticlePoster"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="matrix"
+                app:loadImage="@{post.urlToImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/container_round"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemArticlePoster">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/roundedImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:loadImage="@{post.urlToImage}"
+                    tools:src="@drawable/ic_launcher_background" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemSourceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="4dp"
+                android:paddingBottom="12dp"
+                android:ellipsize="end"
+                android:padding="2dp"
+                android:text="@{post.source.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/container_round"
+                app:layout_constraintTop_toBottomOf="@id/itemArticlePoster"
+                tools:text="الرياضة" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemArticleDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="9dp"
+                android:padding="2dp"
+                android:layout_marginTop="3dp"
+                android:text="@{post.publishedAt}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                app:layout_constraintEnd_toEndOf="@+id/itemSourceName"
+                app:layout_constraintTop_toBottomOf="@id/itemSourceName"
+                tools:text="2021-09-22" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemArticleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingStart="5dp"
+                android:paddingBottom="5dp"
+                android:text="@{post.title}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/container_round"
+                tools:text="الزمالك يفوز علي الهلال السعودي بهدفين مقابل هدف ويحقق لقب السوبر السعودي المصري"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
