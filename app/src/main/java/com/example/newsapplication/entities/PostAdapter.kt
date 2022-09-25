@@ -15,13 +15,14 @@ class PostAdapter (val callback: PostItemClick) : ListAdapter<News, PostAdapter.
         }
 
         override fun areContentsTheSame( oldItem: News,newItem: News): Boolean {
-            return oldItem == newItem
+            return newItem.author + newItem.title == oldItem.author + newItem.title
         }
     }
 
     class PostViewHolder(val viewDataBinding: NewsItemBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
         fun bind(listener: PostItemClick, posts: News) {
-            viewDataBinding.post= posts
+            viewDataBinding.news= posts
+            viewDataBinding.itemclick = listener
             viewDataBinding.executePendingBindings()
         }
 

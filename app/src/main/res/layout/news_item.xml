@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="post"
+            name="news"
             type="com.example.newsapplication.entities.News" />
 
         <variable
             name="itemclick"
             type="com.example.newsapplication.entities.PostItemClick" />
-
     </data>
 
     <androidx.cardview.widget.CardView
@@ -33,6 +31,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{()-> itemclick.onClick(news)}"
             android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical"
             tools:ignore="UnusedAttribute">
@@ -42,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="matrix"
-                app:loadImage="@{post.urlToImage}"
+                app:loadImage="@{news.urlToImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    app:loadImage="@{post.urlToImage}"
+                    app:loadImage="@{news.urlToImage}"
                     tools:src="@drawable/ic_launcher_background" />
 
             </androidx.cardview.widget.CardView>
@@ -77,7 +76,7 @@
                 android:paddingBottom="12dp"
                 android:ellipsize="end"
                 android:padding="2dp"
-                android:text="@{post.source.name}"
+                android:text="@{news.source.name}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/black"
                 android:textSize="10sp"
@@ -92,7 +91,7 @@
                 android:paddingBottom="9dp"
                 android:padding="2dp"
                 android:layout_marginTop="3dp"
-                android:text="@{post.publishedAt}"
+                android:text="@{news.publishedAt}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/black"
                 android:textSize="8sp"
@@ -112,7 +111,7 @@
                 android:maxLines="2"
                 android:paddingStart="5dp"
                 android:paddingBottom="5dp"
-                android:text="@{post.title}"
+                android:text="@{news.title}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/black"
                 android:textSize="16sp"

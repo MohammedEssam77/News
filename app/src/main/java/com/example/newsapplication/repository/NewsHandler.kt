@@ -5,6 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NewsHandler
-@Inject constructor(private val newsRepository: NewsRepository) {
+@Inject
+constructor(private val newsRepository: NewsRepository) {
    suspend fun getNews(country: String,apiKey: String) =newsRepository.getNews(country, apiKey)
 }

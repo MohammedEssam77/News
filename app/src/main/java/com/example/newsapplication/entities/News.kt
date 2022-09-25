@@ -13,7 +13,7 @@ data class News(
     val title: String? = null,
     val url: String? = null,
     val urlToImage: String? = null,
-    val articles: List<News>
+    val articles: ArrayList<News>
 ): Parcelable
 
 @Parcelize
