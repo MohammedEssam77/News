@@ -30,6 +30,6 @@ abstract class BaseAdapter<T>(private var item:MutableList<T>, private val liste
     }
     fun getItem()=item
     override fun getItemCount() =item.size
-    class ItemViewHolder (val binding: ViewDataBinding):BaseViewHolder (binding)
+    class ItemViewHolder (val binding: ViewDataBinding):BaseViewHolder(binding)
     abstract class BaseViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 }
