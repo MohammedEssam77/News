@@ -11,7 +11,7 @@ class RepositoryImp
 @Inject
 constructor(private val newsApi: NewsApi) :  NewsRepository {
 
-    override suspend fun getNews(country: String,apiKey: String)=
+    override suspend fun getNews(country: String,apiKey: String) =
          flow {
             emit(Resource.success(newsApi.getNews(country, apiKey).body()))
         }

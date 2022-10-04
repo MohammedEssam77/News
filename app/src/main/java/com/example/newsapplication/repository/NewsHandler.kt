@@ -7,5 +7,5 @@ import javax.inject.Singleton
 class NewsHandler
 @Inject
 constructor(private val newsRepository: NewsRepository) {
-   suspend fun getNews(country: String,apiKey: String) =newsRepository.getNews(country, apiKey)
+   suspend fun getNews(country: String,apiKey: String) = newsRepository.getNews(country, apiKey)
 }

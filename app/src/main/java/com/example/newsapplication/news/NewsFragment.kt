@@ -1,28 +1,22 @@
 package com.example.newsapplication.news
 
-import android.app.SearchManager
-import android.content.Context
+
 import android.os.Bundle
 import android.view.*
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.newsapplication.R
 import com.example.newsapplication.databinding.FragmentNewsBinding
 import com.example.newsapplication.entities.News
 import com.example.newsapplication.entities.PostAdapter
 import com.example.newsapplication.entities.PostItemClick
-
 import com.example.newsapplication.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class NewsFragment : Fragment() {
+class NewsFragment : Fragment() ,PostItemClick {
     private lateinit var binding: FragmentNewsBinding
     private val viewModel by viewModels<NewsViewModel>()
     private lateinit var adapter: PostAdapter
@@ -64,12 +58,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = PostAdapter(PostItemClick { it ->
-            val detailsFragment = it.let {
-                NewsFragmentDirections.actionNewsListFragmentToDetailsFragment(it)
-            }
-            findNavController().navigate(detailsFragment)
-        })
+        adapter = PostAdapter( this,newsList)
         binding.itemsRecyclerview.adapter = adapter
     }
     private fun setupObservers() {
@@ -81,7 +70,7 @@ class NewsFragment : Fragment() {
                     if (binding.searchResultsET.visibility == View.VISIBLE)
                         filter(binding.searchResultsET.text.toString())
                     else
-                        adapter.submitList(newsList)
+                        adapter.setItem(newsList)
                         binding.swipeRefresh.isRefreshing = false
                 }
                 else -> {
@@ -99,6 +88,13 @@ class NewsFragment : Fragment() {
                 filteredList.add(item)
             }
         }
-        adapter.submitList(filteredList.toMutableList())
+        adapter.setItem(filteredList.toMutableList())
+    }
+
+    override fun onClick(item: News) {
+        val detailsFragment = item.let {
+            NewsFragmentDirections.actionNewsListFragmentToDetailsFragment(it)
+        }
+        findNavController().navigate(detailsFragment)
     }
 }

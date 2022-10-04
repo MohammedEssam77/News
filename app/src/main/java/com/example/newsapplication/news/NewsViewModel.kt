@@ -19,7 +19,7 @@ constructor(
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
-    private val _newsLiveData = MutableLiveData<Resource<News>>()
+    private var _newsLiveData = MutableLiveData<Resource<News>>()
     val data = _newsLiveData as LiveData<Resource<News>>
 
     fun getNews(country: String, apiKey: String) {
